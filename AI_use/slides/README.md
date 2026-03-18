@@ -1,23 +1,22 @@
-# AI Lecture Slides
+# How to Use (and Not Use) AI in 2026 — Slides
 
-Interactive slides for the SSBM AI Lecture Series, built with [Reveal.js](https://revealjs.com/).
+Interactive slides for the SSBM Geneva AI seminar, built with [Reveal.js](https://revealjs.com/).
 
-## 📁 Structure
+## Structure
 
 ```
 slides/
 ├── index.html          # Main presentation file (loads both parts)
-├── part_a.md          # Part A: Introduction to AI
-├── part_b.md          # Part B: Modern AI Architectures
-├── images/            # (Optional) Directory for images
+├── part_a.md          # Part A: How to use AI (landscape, career multiplier, branding)
+├── part_b.md          # Part B: How models fail, LLM training, where AI works/doesn't
+├── images/            # MNIST outputs, diagrams, and slide assets
 └── README.md          # This file
 ```
 
-## 🚀 Viewing the Slides
+## Viewing the Slides
 
 ### Online (GitHub Pages)
-Once you've enabled GitHub Pages for your repository:
-- **URL:** `https://[your-username].github.io/SSBM-Lecture/slides/`
+- **URL:** [https://chrispedder.github.io/SSBM-Lectures/AI_use/slides/](https://chrispedder.github.io/SSBM-Lectures/AI_use/slides/)
 
 ### Locally
 1. Simply open `index.html` in a web browser

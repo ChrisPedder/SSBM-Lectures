@@ -6,7 +6,39 @@
 
 *Press 'S' for speaker notes • Arrow keys to navigate*
 
-Note: Welcome everyone. This seminar is 90 minutes, split roughly in half: the first half covers practical AI workflows you can use immediately; the second half covers when NOT to use AI, wellbeing, and ethics. Both halves matter equally.
+Note: Welcome everyone. This seminar is 90 minutes, split roughly in half: the first half covers practical AI workflows you can use immediately; the second half covers how these models actually work, where they fail, and when NOT to use AI. Both halves matter equally.
+
+---
+
+### About Me
+
+<div class="columns">
+<div class="column">
+
+**Chris Pedder**
+
+- Ph.D. Theoretical Physics, Cambridge
+- 20+ years in technology & AI
+- Chief Data & AI Officer (EdTech, Series A)
+- ML Advisory Board, Aquascope
+- Independent AI Strategy Advisor
+- 27 patents, published researcher
+
+</div>
+<div class="column">
+
+**Why listen to me on this?**
+
+I've built AI systems, led AI teams, and advised boards on AI strategy. I also have a physics background that makes me instinctively sceptical of hype.
+
+I've seen what AI does well. I've seen where it fails. And I've seen the gap between the marketing and the reality.
+
+</div>
+</div>
+
+<span class="small">chrisjbpedder@hey.com · linkedin.com/in/chris-pedder</span>
+
+Note: Quick intro — don't dwell here. The key point is credibility: I've worked in ML since before it was fashionable, I've built and deployed these systems, and I have the technical background to cut through the hype. But I'm also a practitioner and an advisor, not an academic — so everything today is grounded in practical experience, not theory. The physics background matters because it trains you to think about what's actually true, not what sounds impressive.
 
 ---
 

@@ -1,245 +1,104 @@
-# How Machines Learn, Where They Struggle, and What Animals Do Differently
+# How to Use (and Not Use) AI in 2026
 
-## Overview
+**SSBM Geneva — AI Seminar Series**
 
-This repository contains educational materials for a lecture exploring machine learning fundamentals, the limitations of standard deep learning approaches (particularly around uncertainty quantification), and how biological systems learn using principles from the Free Energy Principle.
+A 90-minute interactive seminar on using AI intelligently: where it helps, how it actually works under the hood, and where it falls apart.
 
-The materials are designed for teaching and include interactive notebooks, visualizations, and presentation slides.
+## View the Slides
 
-## Key Learning Objectives
+**Live:** [https://chrispedder.github.io/SSBM-Lectures/AI_use/slides/](https://chrispedder.github.io/SSBM-Lectures/AI_use/slides/)
 
-- Understand how neural networks learn through backpropagation and gradient descent
-- Recognize the limitations of standard DNNs, particularly overconfidence on out-of-distribution data
-- Learn how Bayesian Neural Networks quantify uncertainty
-- Explore the Free Energy Principle as a model for biological learning and behavior
-- Compare machine learning approaches with biological intelligence
+**Locally:**
+```bash
+cd slides
+python -m http.server 8000
+# Open http://localhost:8000
+```
 
-## Slides
+## What the Lecture Covers
 
-The slides for this lecture are located [here](https://chrispedder.github.io/SSBM-Lectures/).
+### Part A: How to Use AI
 
+- **The AI Landscape in 2026** — current tools, the hype cycle, where we actually are
+- **AI as a Career Multiplier** — how AI serves you differently at junior, mid, and senior career stages
+- **Personal Branding with AI** — using AI to amplify your thinking, not replace it
+
+### Part B: How Models Work — and Where They Break
+
+- **How Models Learn and Fail** — live MNIST demo showing models that are confident and spectacularly wrong
+- **How LLMs Are Built** — training data scale (30% of all text ever written), recency bias, RLHF and the sycophancy problem, the synthetic data ouroboros
+- **Where AI Works and Doesn't** — a three-tier honest framework:
+  - *Okay:* when you're expert enough to check it, repetitive work, the blank sheet of paper problem
+  - *Not okay:* when you're learning, when ambiguity creates unchecked problems, when it creates more work than it saves
+  - *Never okay:* frontier knowledge, unwritten assumed expertise, physical/vocational work requiring principles not rules
+- **Using AI with Integrity** — transparency, data privacy, cognitive wellbeing
+- **Your AI Action Plan** — concrete commitments to take away
 
 ## Repository Structure
 
 ```
-.
-├── LICENSE
-├── README.md
-├── pyproject.toml                      # Project dependencies
-├── requirements.txt                    # Alternative dependency list
-├── uv.lock                             # Locked dependencies
-├── setup.sh                            # Environment setup script
-├── launch_bayesian_notebook.sh         # Quick launcher for BNN demo
+AI_use/
+├── README.md                           # This file
+├── pyproject.toml                      # Python dependencies (uv)
 │
-├── notebooks/
-│   ├── visualizations.ipynb            # Neural network visualizations & animations
-│   ├── bayesian_nn_mnist_demo.ipynb    # Bayesian vs Standard DNN comparison
-│   ├── bacterium_visualization.ipynb   # FEP bacterium agent visualization
-│   └── outputs/                        # Generated figures and animations
+├── slides/
+│   ├── index.html                      # Reveal.js presentation
+│   ├── part_a.md                       # Part A: How to use AI
+│   ├── part_b.md                       # Part B: How models work & where they fail
+│   ├── images/                         # Slide images (MNIST outputs, diagrams)
+│   └── README.md                       # Slides editing guide
 │
-├── free_energy_simulations/
-│   ├── fep_agent_simulation.py         # FEP agent in 3D environment
-│   └── fep_simulation_results.png      # Simulation output visualization
-│
-└── slides/
-    ├── index.html                      # Main presentation (Reveal.js)
-    ├── part_a.md                       # Part A: ML Fundamentals
-    ├── part_b.md                       # Part B: Uncertainty & FEP
-    ├── README.md                       # Slides documentation
-    ├── github_pages_setup.md           # Deployment instructions
-    └── images/                         # Slide assets
-        ├── ai_hierarchy.png
-        ├── backpropagation.gif
-        ├── curve_fitting_mse.gif
-        ├── gaussian_weights_pdf.png
-        ├── neural_network_forward_pass.gif
-        ├── softmax_visualization.png
-        ├── step0_base_bacterium.png
-        ├── step1_with_sensors.png
-        ├── step2_with_actuators.png
-        ├── step3_complete.png
-        └── vgg16_architecture.png
+└── notebooks/
+    ├── mnist_confidence_demo.ipynb      # Live demo: confident wrong predictions
+    ├── visualizations.ipynb             # Neural network architecture visualizations
+    ├── bayesian_nn_mnist_demo.ipynb     # Bayesian vs Standard DNN comparison
+    ├── bacterium_visualization.ipynb    # Free Energy Principle bacterium model
+    └── outputs/                         # Generated figures and animations
 ```
 
-## Content Overview
+## Running the MNIST Demo
 
-### Part A: Machine Learning Fundamentals
+The `mnist_confidence_demo.ipynb` notebook is designed to be run live in front of an audience. It trains a CNN on MNIST in about a minute and then reveals the model's most confident mistakes.
 
-**Notebooks**: `visualizations.ipynb`, `bayesian_nn_mnist_demo.ipynb`
+```bash
+# Install dependencies
+uv venv --python 3.12
+source .venv/bin/activate
+uv pip install -e .
 
-- Neural network architecture and forward propagation
-- Loss functions and optimization
-- Backpropagation and gradient descent
-- Animated visualizations of learning dynamics
+# Launch the notebook
+jupyter notebook notebooks/mnist_confidence_demo.ipynb
+```
 
-### Part B: Uncertainty and the Free Energy Principle
+The demo produces:
+- A sample grid of handwritten digits
+- The 8 most confident wrong predictions with confidence bar charts
+- Confidence distributions comparing right vs wrong predictions
+- A noise robustness test showing accuracy collapsing while confidence stays high
 
-**Notebooks**: `bacterium_visualization.ipynb`  
-**Simulations**: `fep_agent_simulation.py`
-
-#### Bayesian Neural Networks
-- Comparison of standard DNNs vs BNNs on MNIST
-- Out-of-distribution detection (trained on digits 0-4, tested on 5-9)
-- Uncertainty quantification through weight distributions
-- Robustness to noisy inputs
-
-#### Free Energy Principle
-- FEP agent navigating a 3D environment
-- Perception as inference (belief updating)
-- Active inference (action selection to minimize surprisal)
-- Biological plausibility of predictive processing
-
-## Setup Instructions
+## Setup
 
 ### Prerequisites
 
-- Python 3.12 or higher
-- UV package manager (recommended) or pip
-- **System-level Graphviz** (required for neural network architecture visualizations)
+- Python 3.12+
+- [uv](https://github.com/astral-sh/uv) package manager (recommended)
 
 ### Installation
 
-1. **Clone the repository**
 ```bash
-   git clone <repository-url>
-   cd SSBM-Lectures
+git clone https://github.com/ChrisPedder/SSBM-Lectures.git
+cd SSBM-Lectures/AI_use
+uv venv --python 3.12
+source .venv/bin/activate
+uv pip install -e .
 ```
 
-2. **Install system-level Graphviz**
+## Contact
 
-   The Python packages `pydot` and `graphviz` (included in dependencies) require the system-level Graphviz executables to generate network architecture diagrams.
-
-   **macOS:**
-```bash
-   brew install graphviz
-```
-
-   **Ubuntu/Debian:**
-```bash
-   sudo apt-get install graphviz
-```
-
-   **Windows:**
-   - Download installer from https://graphviz.org/download/
-   - Run the installer and ensure "Add to PATH" is selected
-   - Restart your terminal/IDE after installation
-
-   **Verify installation:**
-```bash
-   dot -V
-   # Should output: dot - graphviz version X.X.X
-```
-
-   **Note:** If you skip this step, the neural network visualization functions will fall back to text-based summaries instead of generating graphical diagrams.
-
-3. **Run the setup script**
-```bash
-   chmod +x setup.sh
-   ./setup.sh
-```
-
-   Or manually with UV:
-```bash
-   # Install UV if needed
-   curl -LsSf https://astral.sh/uv/install.sh | sh
-
-   # Create virtual environment
-   uv venv --python 3.12
-   source .venv/bin/activate
-
-   # Install dependencies
-   uv pip install -e .
-
-   # Install Jupyter kernel
-   python -m ipykernel install --user --name bayesian-nn --display-name "Bayesian NN (Python 3.12)"
-```
-
-4. **Launch notebooks**
-```bash
-   # For the Bayesian NN demo specifically
-   ./launch_bayesian_notebook.sh
-
-   # Or open any notebook
-   jupyter notebook notebooks/
-```
-
-5. **Run the FEP simulation**
-```bash
-   python free_energy_simulations/fep_agent_simulation.py
-```
-
-### Viewing the Slides
-
-The slides are built with Reveal.js and can be viewed locally or deployed to GitHub Pages:
-
-```bash
-uv run python -m http.server 8000 --bind 127.0.0.1
-# Open http://127.0.0.1:8000 in your browser
-```
-
-See `slides/github_pages_setup.md` for deployment instructions.
-
-## Key Concepts Demonstrated
-
-### Standard Deep Neural Networks
-- Point estimates for weights
-- Deterministic predictions
-- Often overconfident on unfamiliar data
-- No inherent uncertainty quantification
-
-### Bayesian Neural Networks
-- Probability distributions over weights
-- Epistemic uncertainty through posterior sampling
-- Better calibrated confidence on OOD data
-- Natural framework for "knowing what you don't know"
-
-### Free Energy Principle
-- Generative models of the environment
-- Variational free energy as a bound on surprise
-- Perception as minimizing prediction error
-- Action as making predictions come true
-- Unifying framework for perception, learning, and action
-
-## Expected Learning Outcomes
-
-After working through these materials, students will be able to:
-
-1. **Explain** how gradient descent and backpropagation enable neural network learning
-2. **Identify** situations where standard DNNs may fail (OOD data, adversarial examples)
-3. **Compare** uncertainty estimates from BNNs vs confidence from standard DNNs
-4. **Describe** the Free Energy Principle and its components (generative model, free energy, active inference)
-5. **Discuss** how biological systems might implement predictive processing
-
-## Troubleshooting
-
-| Issue | Solution |
-|-------|----------|
-| GPU memory errors | Reduce batch size in training functions |
-| Slow BNN training | BNNs require multiple forward passes; reduce epochs for demos |
-| Import errors | Verify installation with `uv pip list` or `pip list` |
-| Slides not loading | Ensure you're serving via HTTP, not opening file directly |
-| FEP simulation diverging | Check that numerical stability fixes are applied |
-
-## Further Reading
-
-### Bayesian Deep Learning
-- [Weight Uncertainty in Neural Networks (Blundell et al., 2015)](https://arxiv.org/abs/1505.05424)
-- [Practical Variational Inference for Neural Networks (Graves, 2011)](https://papers.nips.cc/paper/2011/hash/7eb3c8be3d411e8ebfab08eba5f49632-Abstract.html)
-- [TensorFlow Probability Documentation](https://www.tensorflow.org/probability)
-
-### Free Energy Principle
-- [The Free Energy Principle for Action and Perception (Friston et al., 2017)](https://www.fil.ion.ucl.ac.uk/~karl/The%20free-energy%20principle%20-%20a%20unified%20brain%20theory.pdf)
-- [Active Inference: A Process Theory (Friston et al., 2017)](https://direct.mit.edu/neco/article/29/1/1/8207/Active-Inference-A-Process-Theory)
-- [A Tutorial on Active Inference (Da Costa et al., 2020)](https://arxiv.org/abs/2001.07203)
-
-### General
-- [Deep Learning Book (Goodfellow et al.)](https://www.deeplearningbook.org/)
-- [Bayesian Reasoning and Machine Learning (Barber)](http://www.cs.ucl.ac.uk/staff/d.barber/brml/)
+- **Chris Pedder** — chrisjbpedder@hey.com
+- LinkedIn: [linkedin.com/in/chris-pedder](https://www.linkedin.com/in/chris-pedder/)
+- GitHub: [github.com/ChrisPedder/SSBM-Lectures](https://github.com/ChrisPedder/SSBM-Lectures)
 
 ## License
 
-This educational material is provided for teaching purposes. See LICENSE file for details.
-
-## Acknowledgments
-
-Developed for SSBM lecture on machine learning, uncertainty, and biological intelligence.
+Educational material provided for teaching purposes. See LICENSE file for details.
