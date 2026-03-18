@@ -24,6 +24,22 @@ Note: I want to be really clear about this because the marketing around AI obscu
 
 ---
 
+### What "Curve Fitting" Actually Means
+
+<img src="images/curve_fitting.png" alt="Three panels showing underfitting, good fit, and overfitting" style="max-height: 400px;">
+
+The same data, three different models:
+
+- **Underfitting:** too simple to capture the pattern
+- **Good fit:** captures the real signal, ignores the noise
+- **Overfitting:** memorises every data point — including the noise. Looks perfect on training data. Fails on anything new.
+
+<span class="emphasis">Neural networks are doing this in millions of dimensions.</span> <!-- .element: class="fragment" -->
+
+Note: This is the intuition you need for everything that follows. The green curve in the middle is what we want — a model that captures the real pattern without memorising the noise. The red curve on the right hits every data point perfectly, but it's learned the noise, not the signal. It will be wildly wrong on new data. This is exactly what happens with neural networks, just in millions of dimensions instead of two.
+
+---
+
 <!-- .slide: data-background-color="#1a1a2e" -->
 
 <div style="color: white; text-align: center; margin-top: 2em; font-size: 1.3em;">
