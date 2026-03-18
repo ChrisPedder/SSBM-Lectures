@@ -22,7 +22,7 @@ Note: Open with this. No title, no introduction, no logo. Just the story. Pause 
 
 *The people who thrive with AI aren't the ones who use it the most. They're the ones who know when to use it, when to step away, and how to stay distinctly human in the process.*
 
-*Press 'S' for speaker notes · Arrow keys to navigate*
+<span class="small">Press 'S' for speaker notes · Arrow keys to navigate</span>
 
 Note: Now the title. Let the quote breathe for a moment. This seminar is 90 minutes, split roughly in half: the first half covers practical AI workflows; the second half covers how these models actually work, where they fail, and when NOT to use AI.
 
@@ -56,7 +56,7 @@ Note: Lead with the tension question — it's the one that creates energy in the
 
 ---
 
-## Section 1
+<p class="section-label">Section 1</p>
 
 # The AI Landscape in 2026
 
@@ -125,7 +125,7 @@ Note: The pragmatic middle is where real value gets created. This is a good fram
 
 ---
 
-## Section 2
+<p class="section-label">Section 2</p>
 
 # AI as a Career Multiplier
 
@@ -273,7 +273,7 @@ Note: Give people exactly 2 minutes. Keep it tight. Cold-call 2-3 people rather 
 
 ---
 
-## Section 3
+<p class="section-label">Section 3</p>
 
 # Personal Branding with AI
 

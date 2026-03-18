@@ -1,4 +1,4 @@
-## Section 4
+<p class="section-label">Section 4</p>
 
 # How Models Learn — and How They Fail
 
@@ -97,7 +97,7 @@ Note: Look at that right-hand chart. 20 wrong predictions with over 90% confiden
 
 ### Fragile Patterns
 
-<img src="images/mnist_accuracy_vs_confidence.png" alt="Accuracy drops with noise but confidence stays high" style="max-height: 420px;">
+<img src="images/mnist_accuracy_vs_confidence.png" alt="Accuracy drops with noise but confidence stays high" style="max-height: 380px;">
 
 Add a tiny amount of random noise — invisible to the human eye — and accuracy collapses.
 
@@ -109,7 +109,7 @@ Note: The blue line is accuracy — it falls off a cliff as we add noise. The re
 
 ---
 
-## Section 5
+<p class="section-label">Section 5</p>
 
 # How LLMs Are Built
 
@@ -218,7 +218,7 @@ Note: The ouroboros — the snake eating its own tail. There's more data but not
 
 ---
 
-## Section 6
+<p class="section-label">Section 6</p>
 
 # Where AI Works — and Where It Doesn't
 
@@ -329,7 +329,7 @@ Note: Give people exactly 2 minutes of quiet writing time. Don't rush it. The fi
 
 ---
 
-## Section 7
+<p class="section-label">Section 7</p>
 
 # Using AI with Integrity
 
@@ -408,7 +408,7 @@ Note: Think-pair-share, 3 minutes max. The deeper question: what are we actually
 
 ---
 
-## Section 8
+<p class="section-label">Section 8</p>
 
 # Your AI Action Plan
 
@@ -467,9 +467,9 @@ Note: Let this land. Pause after "make sure you do." Hold the silence for a beat
 <div style="margin-top: 2em;">
 
 **Stay Connected:**
-- Email: [chrisjbpedder@hey.com]
-- LinkedIn: [https://www.linkedin.com/in/chris-pedder/]
-- GitHub: [github.com/chrispedder/SSBM-Lectures]
+- Email: chrisjbpedder@hey.com
+- LinkedIn: linkedin.com/in/chris-pedder
+- GitHub: github.com/chrispedder/SSBM-Lectures
 
 </div>
 
