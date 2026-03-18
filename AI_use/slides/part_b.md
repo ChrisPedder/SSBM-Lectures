@@ -26,13 +26,11 @@ Note: I want to be really clear about this because the marketing around AI obscu
 
 ### What "Curve Fitting" Actually Means
 
-<img src="images/curve_fitting.png" alt="Three panels showing underfitting, good fit, and overfitting" style="max-height: 400px;">
-
-The same data, three different models:
+<img src="images/curve_fitting.png" alt="Three panels showing underfitting, good fit, and overfitting" style="max-height: 350px;">
 
 - **Underfitting:** too simple to capture the pattern
 - **Good fit:** captures the real signal, ignores the noise
-- **Overfitting:** memorises every data point — including the noise. Looks perfect on training data. Fails on anything new.
+- **Overfitting:** memorises the noise. Looks perfect on training data — fails on anything new.
 
 <span class="emphasis">Neural networks are doing this in millions of dimensions.</span> <!-- .element: class="fragment" -->
 
@@ -58,15 +56,11 @@ Note: Switch to the Jupyter notebook (mnist_confidence_demo.ipynb) and run throu
 
 ### MNIST: The Simplest Possible Task
 
-<img src="images/mnist_sample_grid.png" alt="Sample MNIST handwritten digits" style="max-height: 420px;">
+<img src="images/mnist_sample_grid.png" alt="Sample MNIST handwritten digits" style="max-height: 350px;">
 
-The task:
+70,000 handwritten digits (0–9). Human-labelled. As clean as data gets.
 
-- 70,000 handwritten digits (0–9)
-- Human-labelled. Human-drawn. As clean as data gets.
-- Classify each image as the correct digit.
-
-This is the <span class="key-term">"hello world"</span> of machine learning. Good models get 99%+ accuracy.
+The <span class="key-term">"hello world"</span> of machine learning — good models get 99%+ accuracy.
 
 But that remaining 1% is where it gets interesting... <!-- .element: class="fragment" -->
 
@@ -76,9 +70,9 @@ Note: If you ran the live demo, this is a quick recap with the backup image. If 
 
 ### When Models Get It Spectacularly Wrong
 
-<img src="images/mnist_confident_mistakes.png" alt="Most confident wrong predictions with confidence bars" style="max-height: 420px;">
+<img src="images/mnist_confident_mistakes_small.png" alt="Most confident wrong predictions with confidence bars" style="max-height: 380px;">
 
-A "6" classified as a "4" — with <span class="emphasis">100%</span> confidence. A "5" the model insists is a "6." Digits obvious to any human.
+A "6" classified as a "4" with <span class="emphasis">100%</span> confidence. A "7" the model insists is a "2." Digits obvious to any human.
 
 <span class="small">The simplest possible task. The cleanest possible data. Failures that would embarrass a five-year-old.</span>
 
@@ -280,21 +274,17 @@ Note: The first one is especially important for people early in their careers. T
 
 ### Places Where AI Will Never Be Okay
 
-<div style="margin: 0.5em 0;">
-
 **1. Frontier human knowledge**
 
-<span class="small">How to build better neural architectures. Unsolved physics. Novel mathematics. If nobody has written it down yet, the model hasn't read it. You can't get ahead of the frontier by interpolating from behind it.</span>
+<span class="small">If nobody has written it down yet, the model hasn't read it. You can't get ahead of the frontier by interpolating from behind it.</span>
 
-**2. Where there's a lot of assumed knowledge that isn't written down**
+**2. Assumed knowledge that isn't written down**
 
-<span class="small">Every field has deep expertise that lives in practitioners' heads, not in textbooks or on the internet. The model has never operated a lathe, managed a difficult client, or felt the vibration that tells you a bearing is about to fail.</span>
+<span class="small">Deep expertise lives in practitioners' heads. The model has never operated a lathe or felt the vibration that tells you a bearing is about to fail.</span>
 
-**3. Physical and vocational work that requires understanding principles, not snapshot rules**
+**3. Work that requires understanding principles, not rules**
 
-<span class="small">Knowing "turn left at high RPM" is a rule. Understanding *why* — the physics, the feel of the material — is a principle. Models can parrot rules. They cannot understand principles.</span>
-
-</div>
+<span class="small">Models can parrot rules. They cannot understand *why*. That's a structural limitation, not an engineering challenge.</span>
 
 Note: These are structural limitations, not engineering challenges. A model trained on text literally cannot contain knowledge that hasn't been written down. It can't do first-principles reasoning — it can only interpolate between things it's seen. The model can tell you what a textbook says about welding. It cannot weld. These aren't limitations that get fixed with more compute. They're structural.
 
@@ -450,7 +440,7 @@ Note: Give people the full 5 minutes. This is the most valuable part of the semi
 
 <div style="color: white; text-align: center; margin-top: 1.5em;">
 
-<img src="images/mnist_confident_mistakes.png" alt="Confident wrong predictions" style="max-height: 250px; opacity: 0.85;">
+<img src="images/mnist_confident_mistakes_small.png" alt="Confident wrong predictions" style="max-height: 250px; opacity: 0.85;">
 
 <div style="font-size: 1.2em; margin-top: 1em;">
 
