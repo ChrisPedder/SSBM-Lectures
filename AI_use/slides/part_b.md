@@ -56,7 +56,7 @@ Note: Switch to the Jupyter notebook (mnist_confidence_demo.ipynb) and run throu
 
 ### MNIST: The Simplest Possible Task
 
-<img src="images/mnist_sample_grid.png" alt="Sample MNIST handwritten digits" style="max-height: 350px;">
+<img src="images/mnist_sample_grid.png" alt="Sample MNIST handwritten digits" style="max-height: 300px;">
 
 70,000 handwritten digits (0–9). Human-labelled. As clean as data gets.
 
@@ -82,7 +82,7 @@ Note: If you ran the live demo, the audience has already seen these — use this
 
 ### The Confidence Problem
 
-<img src="images/mnist_confidence_distribution.png" alt="Confidence distribution for right vs wrong predictions" style="max-height: 420px;">
+<img src="images/mnist_confidence_distribution.png" alt="Confidence distribution for right vs wrong predictions" style="max-height: 360px;">
 
 20 wrong predictions had <span class="emphasis">>90% confidence</span>. There's no alarm bell. No flashing light. The model doesn't just fail — it fails without any warning.
 
