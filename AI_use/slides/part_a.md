@@ -321,6 +321,6 @@ We've covered the <span class="key-term">"how to use"</span> side.
 
 Now for the part most seminars skip...
 
-### <span class="emphasis">When NOT to use AI.</span> <!-- .element: class="fragment" -->
+### How these models actually work — and <span class="emphasis">where they break.</span> <!-- .element: class="fragment" -->
 
-Note: This is a natural halfway point. If you want to take a 2-minute stretch break, this is the place. Signal that the second half is arguably more important than the first — it's the part that most AI seminars skip entirely.
+Note: This is a natural halfway point. Take a 2-minute stretch break. Signal that the second half is arguably more important than the first — before you can use a tool well, you need to understand what it actually does. We're going to look under the hood, and then have an honest conversation about where AI works, where it doesn't, and where it never will.

@@ -1,176 +1,328 @@
 ## Section 4
 
-# The Human Side of an AI-Powered Career
+# How Models Learn — and How They Fail
 
-### Career Building, Wellbeing, and AI
+### Understanding the Machine
 
-Note: This is the "and not use" part of the seminar title. Arguably the most important section. Most AI seminars are pure evangelism. This section is what makes yours different.
-
----
-
-### When NOT to Use AI
-
-This is the section most seminars skip.
-
-It's the one people need most. <!-- .element: class="fragment" -->
-
-Note: Set this up with conviction. You've just spent 45 minutes showing people how powerful AI is. Now you're going to tell them when to put it down. The contrast is intentional and will land well if you deliver it with confidence.
+Note: Before we talk about when to use and not use AI, we need to understand what's actually happening under the hood. This isn't going to be a maths lecture, but if you're going to use these tools intelligently, you need a feel for what they're actually doing. And more importantly — where they break.
 
 ---
 
-### Don't Use AI for the Work That Builds Your Expertise
+### What a Neural Network Actually Does
 
-<!-- IMAGE PLACEHOLDER: Training wheels metaphor — bicycle with training wheels vs balanced rider -->
+At its core, a neural network is a <span class="key-term">pattern-matching machine</span>.
 
-If you let AI write every email, draft every analysis, and solve every problem...
+- It takes in data (images, text, numbers) <!-- .element: class="fragment" -->
+- It learns statistical patterns in that data <!-- .element: class="fragment" -->
+- It uses those patterns to make predictions on new data <!-- .element: class="fragment" -->
 
-You'll look competent without <span class="emphasis">becoming</span> competent. <!-- .element: class="fragment" -->
+That's it. There's no understanding. No reasoning.
 
-*There's a difference between using training wheels and never learning to balance.* <!-- .element: class="fragment" -->
+Just very, very sophisticated <span class="emphasis">curve fitting</span>. <!-- .element: class="fragment" -->
 
-Note: This is especially important for early-career professionals. The struggle IS the learning. If you bypass it with AI, you build a hollow shell of competence. You can produce the output but you can't explain the reasoning, adapt when conditions change, or teach others. This doesn't mean never use AI — it means be deliberate about which tasks you do the hard way because the difficulty is the point.
-
----
-
-### Don't Use AI for Relationship-Building Moments
-
-Some moments are valuable <span class="key-term">because of the effort</span>, not despite it.
-
-- The thank-you note to a mentor <!-- .element: class="fragment" -->
-- The congratulations message to a colleague <!-- .element: class="fragment" -->
-- The difficult conversation with a team member <!-- .element: class="fragment" -->
-- The personal touch that shows you care <!-- .element: class="fragment" -->
-
-Note: These are moments where the effort IS the point. An AI-generated thank-you note to a mentor is worse than a brief, genuine one you wrote yourself. People can tell the difference — maybe not in the words, but in the specificity and warmth. Relationships are built on authentic human connection, not optimised prose.
+Note: I want to be really clear about this because the marketing around AI obscures it. A neural network — even a really big one — is doing statistical pattern matching. It's finding correlations in data. It's incredibly good at this, often much better than we are. But it's not thinking. It doesn't understand the data. It's fitting curves through high-dimensional space. If you remember one thing from this section, make it this: these models are interpolation machines, not reasoning machines.
 
 ---
 
-### Don't Use AI as a Substitute for Thinking
+### MNIST: The Simplest Possible Task
 
-<div style="text-align: center; margin: 1.5em 0; font-size: 1.1em;">
+<img src="images/mnist_sample_grid.png" alt="Sample MNIST handwritten digits" style="max-height: 320px;">
 
-*If you find yourself pasting every decision into a chatbot — pause.*
+The task:
 
-</div>
+- 70,000 handwritten digits (0–9)
+- Human-labelled. Human-drawn. As clean as data gets.
+- Classify each image as the correct digit.
 
-- AI can help you think, but it shouldn't think <span class="emphasis">for</span> you <!-- .element: class="fragment" -->
-- The ability to sit with ambiguity is a skill <!-- .element: class="fragment" -->
-- Wrestling with a problem builds judgement <!-- .element: class="fragment" -->
-- Judgement atrophies if you don't use it <!-- .element: class="fragment" -->
+This is the <span class="key-term">"hello world"</span> of machine learning. <!-- .element: class="fragment" -->
 
-Note: This is about cognitive sovereignty. The ability to form your own judgement, sit with uncertainty, and work through complexity is a muscle. If you outsource it every time, it weakens. AI can help you think — by surfacing information, challenging assumptions, or structuring your thoughts — but the final synthesis must be yours. Especially for high-stakes decisions: legal, ethical, personnel, or strategic matters where accountability rests with you.
+Good models get 99%+ accuracy. <!-- .element: class="fragment" -->
 
----
+But that remaining 1% is where it gets interesting... <!-- .element: class="fragment" -->
 
-### The Wellbeing Dimension
-
-<!-- IMAGE PLACEHOLDER: Brain/gym fitness metaphor illustration -->
-
-<div class="columns">
-<div class="column">
-
-**Cognitive offloading**
-
-You don't stop going to the gym because you have a car.
-
-If you outsource all cognitive heavy lifting, your ability to think deeply may atrophy.
-
-</div>
-<div class="column">
-
-**The comparison trap**
-
-Everyone seems to produce more, faster, better.
-
-AI amplifies <span class="key-term">output</span>, not necessarily quality or impact.
-
-</div>
-</div>
-
-Note: Research on cognitive offloading suggests there's a real risk to outsourcing too much mental work. Frame it like physical fitness: the car gets you places faster, but it doesn't keep you healthy. You need both. The comparison trap is real too — when colleagues seem to produce at superhuman speed, it's easy to feel inadequate. Remind people that volume isn't value.
+Note: MNIST is the first thing every ML student trains a model on. It's been around since 1998. The images are 28x28 pixels, greyscale, centred. It's an absurdly clean, simple dataset. Modern models absolutely crush it — 99.7% accuracy is routine. So you'd think this is a solved problem. But let's look at what happens in that last fraction of a percent.
 
 ---
 
-### Screen Fatigue and Imposter Syndrome
+### When Models Get It Spectacularly Wrong
 
-<div class="columns">
-<div class="column">
+<img src="images/mnist_confident_mistakes.png" alt="Most confident wrong predictions with confidence bars" style="max-height: 420px;">
 
-**Screen fatigue**
+The failures aren't just wrong — they're <span class="emphasis">confidently</span> wrong.
 
-More tools, more interfaces, more notifications.
+- A handwritten "6" classified as a "4" — with <span class="emphasis">100%</span> confidence <!-- .element: class="fragment" -->
+- A "5" the model insists is a "6" — with 99% confidence <!-- .element: class="fragment" -->
+- A "0" classified as a "7" — digits obvious to any human <!-- .element: class="fragment" -->
 
-Knowing when to close the laptop and think with a pen and paper is a <span class="key-term">genuine professional skill</span>.
+<span class="small">The simplest possible task. The cleanest possible data. Failures that would embarrass a five-year-old.</span> <!-- .element: class="fragment" -->
 
-</div>
-<div class="column">
-
-**Imposter syndrome**
-
-*"Am I actually good at my job, or is it just the AI?"*
-
-This is a real and growing concern. You need strategies to maintain confidence in your own capabilities.
-
-</div>
-</div>
-
-Note: Screen fatigue is practical — more AI tools means more interfaces competing for attention. Sometimes the most productive thing you can do is step away from all of them. Imposter syndrome in the AI era is a newer phenomenon. People genuinely wonder whether their output reflects their ability or their tools. Strategies: regularly do work without AI to prove to yourself you can; keep a record of your genuine insights and contributions; remember that choosing the right tool and knowing what to ask IS a skill.
+Note: This is the crucial point. The model doesn't just get things wrong — it gets things wrong while being completely sure it's right. The top mistake was 100% confidence — the model was mathematically certain, and completely wrong. A human looking at these images would have no trouble at all. But the model has learned specific pixel patterns, not the concept of what a "6" looks like. It's pattern matching, remember? If a particular way of writing a digit doesn't match the patterns it's seen, it picks the closest match from what it knows — and reports high confidence because that's what the mathematics does.
 
 ---
 
-### Building a Sustainable AI Practice
+### The Confidence Problem
 
-Three principles for the long term:
+<img src="images/mnist_confidence_distribution.png" alt="Confidence distribution for right vs wrong predictions" style="max-height: 300px;">
 
-<div style="margin: 1em 0;">
+20 wrong predictions had <span class="emphasis">>90% confidence</span>. The model doesn't just fail — it fails without any warning.
 
-**1. Audit your usage** <!-- .element: class="fragment" -->
+- Models don't know what they don't know <!-- .element: class="fragment" -->
+- They can't say "I've never seen anything like this" <!-- .element: class="fragment" -->
+- They always give you their best guess — even when the right answer is "I have no idea" <!-- .element: class="fragment" -->
 
-<span class="small">Monthly review: what am I using AI for? Is it making me better, or just faster? Am I still developing my core skills?</span> <!-- .element: class="fragment" -->
+If this happens with handwritten digits, <span class="emphasis">imagine what happens with language.</span> <!-- .element: class="fragment" -->
 
-**2. Set boundaries** <!-- .element: class="fragment" -->
-
-<span class="small">Decide in advance which tasks you'll always do yourself. Protect the work that makes you *you*.</span> <!-- .element: class="fragment" -->
-
-**3. Stay curious but selective** <!-- .element: class="fragment" -->
-
-<span class="small">Find 2-3 tools that genuinely help and learn them deeply. Don't skim the surface of dozens.</span> <!-- .element: class="fragment" -->
-
-</div>
-
-Note: This is about intentionality. Most people drift into AI habits without examining them. A monthly audit takes 10 minutes and can be transformative. The boundaries principle is about protecting your core skills and identity. The selectivity principle is about going deep rather than wide — mastering a few tools beats superficial familiarity with many.
+Note: Look at that right-hand chart. 20 of the wrong predictions had over 90% confidence. The model was almost certain — and completely wrong. There's no alarm bell. No flashing light. It doesn't turn red and say "I'm guessing here." It just gives you an answer with the same confident tone whether it's right or wrong. Do you see the problem? If this happens with handwritten digits — the simplest task in machine learning — what happens when we scale this up to language?
 
 ---
 
-### Reflective Activity
+### Fragile Patterns
 
-<!-- .slide: data-background-color="#fff3e0" -->
+<img src="images/mnist_accuracy_vs_confidence.png" alt="Accuracy drops with noise but confidence stays high" style="max-height: 300px;">
 
-**Individual reflection (2 minutes):**
+Add a tiny amount of random noise — invisible to the human eye — and accuracy collapses.
 
-Write down:
+But the model's <span class="emphasis">confidence barely drops</span>. <!-- .element: class="fragment" -->
 
-1. <span class="key-term">One thing</span> you're currently using AI for that you should probably do yourself
+It's getting worse and worse, and it doesn't know it. <!-- .element: class="fragment" -->
 
-2. <span class="key-term">One thing</span> you're doing manually that AI could genuinely help with
-
-*Optional sharing with the group.*
-
-Note: Give people exactly 2 minutes of quiet writing time. This is an important moment — don't rush it. The contrast between the two questions is the point. Most people will find they have something in both columns, which validates the "use AND not use" framing of the whole seminar. If time allows, ask 2-3 volunteers to share.
+Note: This chart is really telling. The blue line is accuracy — it falls off a cliff as we add noise. The red line is the model's average confidence — it stays stubbornly high. At noise level 0.5, accuracy is around 70% but the model is still 75% confident on average. The patterns it learned are brittle. A human can still read these digits through the noise, but the model's pixel-level pattern matching falls apart. And critically, it doesn't know it's falling apart. This is the confidence problem in a nutshell — the model has no self-awareness of its own reliability.
 
 ---
 
 ## Section 5
 
-# Using AI with Integrity
+# How LLMs Are Built
 
-### The Ethics and Responsibility Conversation
+### The Data, The Training, The Problems
 
-Note: Address the elephant in the room. People have questions about ethics but often feel awkward raising them. Create a safe space for this conversation. There are no perfect answers here — the goal is to surface the questions and give people frameworks for thinking about them.
+Note: Now let's talk specifically about the large language models you're actually using — ChatGPT, Claude, Gemini. How are these things made? Because understanding the ingredients tells you a lot about the meal.
 
 ---
 
-### Transparency and Intellectual Honesty
+### The Scale of the Training Data
+
+A recent model was trained on <span class="key-term">18 trillion tokens</span> of text.
+
+To put that in perspective: <!-- .element: class="fragment" -->
+
+- Total text ever created by humans: ~60 trillion tokens <!-- .element: class="fragment" -->
+- That model consumed roughly <span class="emphasis">30% of everything humans have ever written</span> <!-- .element: class="fragment" -->
+
+<span class="small">Be under no illusions — this is a lot. These datasets cost billions to create, and the remaining "fossil fuel" for the next generation will probably be uneconomic to extract.</span> <!-- .element: class="fragment" -->
+
+Note: Let that sink in for a moment. One third of all the text data ever created by human beings. From the first cuneiform tablets in Mesopotamia to the tweet someone posted five minutes ago. That's an extraordinary quantity of data. And we're running out of it — these companies have essentially consumed the easily available internet. Ilya Sutskever, one of the founders of OpenAI, called human-written data "the fossil fuel of AI." The easily accessible deposits are being used up. Such a dataset costs billions to create, and the remaining fuel for powering the next generation will probably be uneconomic to extract.
+
+---
+
+### The Recency Problem
+
+Not all data is created equal:
+
+<div style="text-align: center; margin: 1em 0; font-size: 1.2em;">
+
+**~50% of all text ever written was created in the last four years.** <!-- .element: class="fragment" -->
+
+</div>
+
+This means your AI model: <!-- .element: class="fragment" -->
+
+- Knows a *lot* about 2020s internet culture <!-- .element: class="fragment" -->
+- Knows less about niche expertise that predates the internet <!-- .element: class="fragment" -->
+- Is overwhelmingly trained on what's <span class="emphasis">popular and recent</span>, not what's correct <!-- .element: class="fragment" -->
+
+Note: The rate at which humanity creates text is exponential. We're producing more text now than at any point in history. This creates a massive recency bias in the training data. The model knows more about memes from 2023 than about foundational physics from 1960. It knows more about trending opinions than about deep domain expertise. This isn't a criticism of the models — it's just a consequence of where the data comes from. The internet is broad but shallow. And the model reflects that.
+
+---
+
+### RLHF: Teaching Models to Please You
+
+After training on text, models are fine-tuned using <span class="key-term">Reinforcement Learning from Human Feedback</span>.
+
+How it works:
+
+1. The model generates multiple responses <!-- .element: class="fragment" -->
+2. Human raters rank which response they *prefer* <!-- .element: class="fragment" -->
+3. The model learns to produce responses that get higher ratings <!-- .element: class="fragment" -->
+
+The problem? <!-- .element: class="fragment" -->
+
+<span class="emphasis">The model learns to tell you what you want to hear.</span> <!-- .element: class="fragment" -->
+
+Note: RLHF is how you get from a raw language model — which would happily generate toxic content, ramble incoherently, or produce harmful instructions — to something that's actually useful and safe to interact with. But it has a side effect. When you optimise a model to produce responses that humans rate highly, you inadvertently teach it to be sycophantic. Humans rate responses higher when the model agrees with them, compliments their ideas, and avoids challenging them. So the model learns to do exactly that. It's not a bug — it's a natural consequence of the optimisation target.
+
+---
+
+### The Sycophancy Problem
+
+Recent research has shown LLMs will:
+
+- <span class="emphasis">Agree</span> with factually incorrect statements if you push back <!-- .element: class="fragment" -->
+- <span class="emphasis">Change</span> correct answers when the user expresses doubt <!-- .element: class="fragment" -->
+- <span class="emphasis">Praise</span> bad ideas rather than offering honest criticism <!-- .element: class="fragment" -->
+- Tell you your code is <span class="emphasis">brilliant</span> when it's full of bugs <!-- .element: class="fragment" -->
+
+<div style="text-align: center; margin: 1em 0;">
+
+*This isn't a bug being fixed. It's structurally baked into the training process.* <!-- .element: class="fragment" -->
+
+</div>
+
+Note: This has become a serious, well-documented problem. There have been cases where models changed a correct answer to an incorrect one just because the user said "are you sure?" Think about what that means for using AI as a research tool, a reviewer, or a thought partner. If it's going to tell you what you want to hear rather than what you need to hear, its value as a critical thinking partner is seriously undermined. The AI companies are aware of this and working on it, but it's a fundamental tension — you want models that are helpful and pleasant to interact with, but that creates a structural tendency towards agreement over accuracy.
+
+---
+
+### The Synthetic Data Ouroboros
+
+As the internet fills with AI-generated content (~20% of text created in 2024), the next generation of models will train on the output of the current generation.
+
+<!-- IMAGE PLACEHOLDER: Ouroboros snake illustration -->
+
+<div class="columns">
+<div class="column">
+
+**More data ≠ more information**
+
+You can't learn anything new by reading your own essays back to yourself.
+
+</div>
+<div class="column">
+
+**Mode collapse**
+
+Models trained on model output converge towards a narrower, blander average.
+
+</div>
+</div>
+
+Note: This is the ouroboros problem — the snake eating its own tail. As AI-generated content floods the internet, the next crop of models will be trained on it. But there's more data here and not more information — you can't create new information by taking samples from a statistical distribution you already have. And worse, there's evidence of "mode collapse" — where the diversity and richness of the output narrows over time. We're already seeing cases where hallucinations from current models have become "facts" on the internet for the next generation to train on. The fossil fuel is running out, and we can't manufacture more of it.
+
+---
+
+## Section 6
+
+# Where AI Works — and Where It Doesn't
+
+### An Honest Framework
+
+Note: Right. Now you understand what these models actually are — sophisticated pattern matchers trained on internet text, fine-tuned to be agreeable. With that context, let's be honest about where they work, where they don't, and where they never will. This isn't marketing. This is based on understanding what's actually going on under the hood.
+
+---
+
+### Places It's Okay to Use AI
+
+<div style="margin: 0.5em 0;">
+
+**1. When you're expert enough to know if it's right** <!-- .element: class="fragment" -->
+
+<span class="small">If you can read the output and immediately spot errors, AI is a great first-draft machine. If you can't — you're not using the tool, the tool is using you.</span> <!-- .element: class="fragment" -->
+
+**2. When it's repetitive work you can do an overall check of** <!-- .element: class="fragment" -->
+
+<span class="small">Boilerplate, formatting, templating — the work that needs doing but doesn't need your original thinking. You're not outsourcing judgement, you're outsourcing typing.</span> <!-- .element: class="fragment" -->
+
+**3. When you're facing the "blank sheet of paper" problem** <!-- .element: class="fragment" -->
+
+<span class="small">Getting started is often the hardest part. Having something — anything — to react to is genuinely useful. Just don't mistake the AI's first draft for a finished product.</span> <!-- .element: class="fragment" -->
+
+</div>
+
+Note: These three cases have something in common — you remain in control. You have the expertise to evaluate the output, or the task is mechanical enough that errors are easy to catch, or you're using it as a starting point that you'll substantially rewrite. In all three cases, you're the human in the loop, and the AI is a tool, not an authority. The key test is simple: can you tell when it's wrong? If yes, crack on.
+
+---
+
+### Places It's Not Okay to Use AI
+
+<div style="margin: 0.5em 0;">
+
+**1. When you're learning a new skill** <!-- .element: class="fragment" -->
+
+<span class="small">The struggle *is* the learning. If you skip it, you build a hollow shell of competence — you'll produce the output but you won't understand the reasoning, and you won't be able to adapt when conditions change.</span> <!-- .element: class="fragment" -->
+
+**2. When ambiguity in the input creates unchecked problems in the output** <!-- .element: class="fragment" -->
+
+<span class="small">If your prompt is vague, the model will fill in the gaps with plausible-sounding nonsense. And because of the sycophancy problem, it won't flag that it's guessing.</span> <!-- .element: class="fragment" -->
+
+**3. When it creates more work than it saves** <!-- .element: class="fragment" -->
+
+<span class="small">If you have to check every paragraph of a report the AI wrote — just write the damn report yourself. You'll probably finish faster and actually understand what you've written.</span> <!-- .element: class="fragment" -->
+
+</div>
+
+Note: The first one is especially important for people early in their careers. The struggle IS the learning. If you use AI to write your first financial model, you'll have a financial model, but you won't have learned financial modelling. There's a difference between using training wheels and never learning to balance. The second one is subtle — if you don't give the model enough context, it will make assumptions, and because of the sycophancy problem we just discussed, it won't tell you it's guessing. The third one is pure pragmatism. I've watched people spend an hour prompting, re-prompting, and editing AI output for something they could have written in 20 minutes.
+
+---
+
+### Places Where AI Will Never Be Okay
+
+<div style="margin: 0.5em 0;">
+
+**1. Frontier human knowledge** <!-- .element: class="fragment" -->
+
+<span class="small">How to build better neural architectures. Unsolved physics. Novel mathematics. If nobody has written it down yet, the model hasn't read it. You can't get ahead of the frontier by interpolating from behind it.</span> <!-- .element: class="fragment" -->
+
+**2. Where there's a lot of assumed knowledge that isn't written down** <!-- .element: class="fragment" -->
+
+<span class="small">Every field has deep expertise that lives in practitioners' heads, not in textbooks or on the internet. The model has never operated a lathe, managed a difficult client, or felt the vibration that tells you a bearing is about to fail.</span> <!-- .element: class="fragment" -->
+
+**3. Physical and vocational work that requires understanding principles, not snapshot rules** <!-- .element: class="fragment" -->
+
+<span class="small">Knowing "turn left at high RPM" is a rule. Understanding *why* — the physics, the feel of the material — is a principle. Models can parrot rules. They cannot understand principles.</span> <!-- .element: class="fragment" -->
+
+</div>
+
+Note: These are structural limitations, not engineering challenges being worked on. A model trained on text literally cannot contain knowledge that hasn't been written down. It can't do first-principles reasoning — it can only interpolate between things it's seen. This is why AI will never replace physicists, or skilled tradespeople, or anyone whose expertise comes from deep understanding rather than pattern matching. The model can tell you what a textbook says about welding. It cannot weld. And more importantly, it can't tell you what happens when the conditions don't match the textbook — because that requires understanding, not pattern recall. Do you see the problem? These aren't limitations that get fixed with more compute. They're structural.
+
+---
+
+### A Simple Decision Framework
+
+Before using AI for a task, ask yourself:
+
+<div style="text-align: center; margin: 1em 0; font-size: 1.1em;">
+
+1. **Can I tell when it's wrong?** <!-- .element: class="fragment" -->
+2. **Am I skipping learning I actually need?** <!-- .element: class="fragment" -->
+3. **Has this knowledge actually been written down?** <!-- .element: class="fragment" -->
+
+</div>
+
+If the answer to #1 is no — <span class="emphasis">stop</span>. <!-- .element: class="fragment" -->
+
+If the answer to #2 is yes — <span class="emphasis">do it yourself</span>. <!-- .element: class="fragment" -->
+
+If the answer to #3 is no — <span class="emphasis">the model can't help you</span>. <!-- .element: class="fragment" -->
+
+Note: This is a practical filter you can apply to any AI task. It takes five seconds and will save you from the worst failure modes. The first question catches the sycophancy problem and the confidence problem — if you can't evaluate the output, you're flying blind. The second catches the expertise-building problem — the struggle is the learning. The third catches the fundamental structural limitation of models trained on text — they can only know what humans have written down.
+
+---
+
+<!-- .slide: data-background-color="#fff3e0" -->
+
+### Reflective Activity
+
+**Individual reflection (2 minutes):**
+
+Write down:
+
+1. <span class="key-term">One task</span> you've been using AI for where you actually can't tell if it's right
+2. <span class="key-term">One skill</span> you might be hollowing out by outsourcing it
+
+*Optional sharing with the group.*
+
+Note: Give people exactly 2 minutes of quiet writing time. This is an important moment — don't rush it. The first question is deliberately uncomfortable. Most people, if they're honest, will find at least one task where they've been trusting the AI's output without genuinely being able to evaluate it. The second question connects to the training wheels metaphor. If time allows, ask 2-3 volunteers to share.
+
+---
+
+## Section 7
+
+# Using AI with Integrity
+
+Note: A condensed but important section on ethics and responsibility. Now that you understand the technical limitations, let's talk about the human responsibilities that come with using these tools.
+
+---
+
+### Transparency and Trust
 
 <div class="columns">
 <div class="column">
@@ -179,33 +331,51 @@ Note: Address the elephant in the room. People have questions about ethics but o
 
 A useful principle: if the person receiving your work <span class="key-term">would care</span>, tell them.
 
+- Academic work: almost always disclose
+- Professional deliverables: context-dependent
+- Creative output: the most contested territory
+
 </div>
 <div class="column">
 
-**Where do you draw the line?**
+**Data and privacy**
 
-Passing off AI work as entirely your own is a spectrum, not a binary. Context matters:
-
-- Academic work
-- Professional deliverables
-- Creative output
+- What are you pasting into AI tools?
+- Sensitive client data? Proprietary information?
+- <span class="emphasis">Know your organisation's policy.</span>
+- If there isn't one — you need your own.
 
 </div>
 </div>
 
-Note: There's no universal rule on disclosure yet, but the "would they care" test is practical and honest. For academic work, the standards are usually clearest. For professional work, it varies by industry and organisation. For creative work, it's the most contested territory. Encourage people to think about this deliberately rather than defaulting to whatever's convenient.
+Note: Two important points on integrity. First, disclosure: there's no universal rule yet, but the "would they care" test is practical and honest. Second, data privacy: many people paste sensitive information into AI tools without thinking about where that data goes. Organisational policies are still catching up. If your organisation doesn't have a policy, develop your own before you accidentally share something you shouldn't.
 
 ---
 
-### Data, Privacy, and Accuracy
+### The Wellbeing Check
 
-- **What are you putting into AI tools?** Sensitive client information? Proprietary data? Personal details? <!-- .element: class="fragment" -->
-- **Know your organisation's policy.** If there isn't one, develop your own. <!-- .element: class="fragment" -->
-- **AI models have biases and make mistakes.** If AI informs decisions affecting others — hiring, assessments, recommendations — you have a responsibility to verify. <!-- .element: class="fragment" -->
+<div class="columns">
+<div class="column">
 
-<span class="emphasis">The output is only as trustworthy as the verification you put into it.</span> <!-- .element: class="fragment" -->
+**Cognitive fitness**
 
-Note: This is practical risk management. Many people paste sensitive information into AI tools without thinking about where that data goes. Organisational policies are still catching up. On bias: AI models reflect the data they were trained on, which means they inherit historical biases. If you're using AI to inform decisions that affect people's careers or lives, you have an obligation to critically evaluate the output, not just accept it.
+You don't stop going to the gym because you have a car.
+
+If you outsource all cognitive heavy lifting, your ability to think deeply <span class="emphasis">will</span> atrophy.
+
+</div>
+<div class="column">
+
+**The imposter question**
+
+*"Am I actually good at my job, or is it just the AI?"*
+
+Strategy: regularly do work without AI — not as a badge of honour, but to maintain confidence in your own capabilities.
+
+</div>
+</div>
+
+Note: Quick wellbeing check. The cognitive fitness analogy is important — the car gets you places faster, but it doesn't keep you healthy. You need both. And the imposter syndrome point is real and growing. People genuinely wonder whether their output reflects their ability or their tools. Regularly doing work without AI isn't about being a luddite — it's about maintaining your own confidence and ensuring the skills are still there when you need them.
 
 ---
 
@@ -215,35 +385,31 @@ Note: This is practical risk management. Many people paste sensitive information
 
 **Scenario:**
 
-*Your colleague submits a report that's clearly mostly AI-generated but presents it as their own work. What do you do?*
+*A colleague writes a detailed report using AI but presents it as entirely their own work. Another colleague, who wrote theirs from scratch, took twice as long. Is this fair?*
 
 <span class="small">No right answer required. The complexity is the point.</span>
 
-Note: If time is tight, this can be a brief think-pair-share rather than a full group discussion. The value is in surfacing the discomfort and the range of reactions. Some people will say it's fine; others will say it's dishonest. Both positions have merit depending on context. The point is that these are decisions we all need to make deliberately, not accidentally. Keep this to 3 minutes maximum.
+Note: If time is tight, this can be a brief think-pair-share rather than a full group discussion. The value is in surfacing the discomfort. Some people will say the first colleague was smart to use tools; others will say it's dishonest. Both positions have merit depending on context. The deeper question is: what are we actually valuing — the output or the thinking? Keep this to 3 minutes maximum.
 
 ---
 
-## Section 6
+## Section 8
 
 # Your AI Action Plan
 
-Note: Quick recap and then move to action planning. The goal is that everyone leaves with something concrete they'll do differently this week.
+Note: Quick recap and then move to action planning. Everyone should leave with something concrete they'll do differently this week.
 
 ---
 
-### Five Key Principles
+### What We've Covered
 
-1. Use AI to <span class="key-term">amplify your strengths</span>, not mask your weaknesses <!-- .element: class="fragment" -->
+1. AI is a powerful <span class="key-term">tool</span> — not magic, not intelligence <!-- .element: class="fragment" -->
+2. Models are pattern matchers that can be <span class="emphasis">confidently wrong</span> <!-- .element: class="fragment" -->
+3. LLMs are trained on internet text, optimised to please you <!-- .element: class="fragment" -->
+4. Use AI when you have the expertise to <span class="key-term">evaluate the output</span> <!-- .element: class="fragment" -->
+5. Some things AI will <span class="emphasis">structurally never</span> be able to do <!-- .element: class="fragment" -->
 
-2. Invest the time you save into <span class="key-term">the work that matters most</span> <!-- .element: class="fragment" -->
-
-3. Keep your personal brand <span class="key-term">distinctly yours</span> <!-- .element: class="fragment" -->
-
-4. Protect the skills and experiences that make you <span class="key-term">irreplaceable</span> <!-- .element: class="fragment" -->
-
-5. Use AI <span class="key-term">with intention</span>, not just because it's there <!-- .element: class="fragment" -->
-
-Note: Recap these quickly — one sentence each. They should feel like a natural summary of everything you've covered. If you've delivered the seminar well, the audience should be nodding along rather than hearing anything new.
+Note: Quick recap. These five points are the core message. If people remember nothing else from this seminar, these five things will serve them well. They're simple to remember and they cover the essential ground.
 
 ---
 
@@ -259,11 +425,11 @@ Note: Recap these quickly — one sentence each. They should feel like a natural
 
 2. One area where you'll deliberately <span class="emphasis">not</span> use AI
 
-3. One <span class="key-term">skill</span> you'll develop with AI as a learning partner
+3. One task where you'll apply the <span class="key-term">three-question test</span> before using AI
 
 </div>
 
-Note: Give people the full 5 minutes. This is the most valuable part of the seminar for many attendees — the moment where general ideas become personal commitments. Walk around the room if appropriate. If you've prepared printed handouts with an action planning template, distribute them here.
+Note: Give people the full 5 minutes. This is the most valuable part of the seminar — the moment where general ideas become personal commitments. Walk around the room if appropriate. The third item is deliberately different from before — it's not about finding another tool, it's about building the habit of evaluating when AI is appropriate before reaching for it.
 
 ---
 
@@ -290,4 +456,4 @@ Note: Give people the full 5 minutes. This is the most valuable part of the semi
 Slides created with Reveal.js
 </div>
 
-Note: Open Q&A — leave 7 minutes for this. This audience will have questions. Common ones to anticipate: "What tools do you recommend?", "Will AI take my job?", "How do I convince my boss to let me use AI?", "What about regulation?" If you have a QR code linking to a curated resource list, show it here.
+Note: Open Q&A — leave 7 minutes for this. Common questions to anticipate: "What tools do you recommend?", "Will AI take my job?", "How do I convince my boss to let me use AI?", "What about regulation?" The technical grounding from earlier should help you answer these with more nuance than the typical AI seminar. If someone asks about a specific use case, run it through the three-question framework live — that's a great way to demonstrate its practical value.
